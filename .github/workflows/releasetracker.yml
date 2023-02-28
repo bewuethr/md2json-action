@@ -1,0 +1,13 @@
+name: Update release tags
+
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+jobs:
+  update-release-tags:
+    name: Update release tags
+    uses: bewuethr/workflows/.github/workflows/releasetracker.yml@main
+    permissions:
+      contents: write

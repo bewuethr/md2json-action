@@ -1,0 +1,15 @@
+name: Lint code base
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint code base
+    uses: bewuethr/workflows/.github/workflows/linter.yml@main
+    permissions:
+      statuses: write

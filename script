@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+required=$1
+optional=$2
+
+printf '%s: %s\n' 'required' "$required" 'optional' "$optional"
+
+echo 'output=value' >> "$GITHUB_OUTPUT"
