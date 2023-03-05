@@ -1,46 +1,45 @@
-# Template for a composite action
+# md2json action
 
 [![Lint code base][1]][2]
 [![Update release tags][3]][4]
 [![Add issues to project][5]][6]
 
-[1]: <https://github.com/bewuethr/composite-action-template/actions/workflows/lint.yml/badge.svg>
-[2]: <https://github.com/bewuethr/composite-action-template/actions/workflows/lint.yml>
-[3]: <https://github.com/bewuethr/composite-action-template/actions/workflows/releasetracker.yml/badge.svg>
-[4]: <https://github.com/bewuethr/composite-action-template/actions/workflows/releasetracker.yml>
-[5]: <https://github.com/bewuethr/composite-action-template/actions/workflows/addtoproject.yml/badge.svg>
-[6]: <https://github.com/bewuethr/composite-action-template/actions/workflows/addtoproject.yml>
+[1]: <https://github.com/bewuethr/md2json-action/actions/workflows/lint.yml/badge.svg>
+[2]: <https://github.com/bewuethr/md2json-action/actions/workflows/lint.yml>
+[3]: <https://github.com/bewuethr/md2json-action/actions/workflows/releasetracker.yml/badge.svg>
+[4]: <https://github.com/bewuethr/md2json-action/actions/workflows/releasetracker.yml>
+[5]: <https://github.com/bewuethr/md2json-action/actions/workflows/addtoproject.yml/badge.svg>
+[6]: <https://github.com/bewuethr/md2json-action/actions/workflows/addtoproject.yml>
 
-This is a template for a composite action running a stand-alone Bash script.
+An action to convert Markdown to JSON
 
 ## Inputs
 
-### `required-input`
+### `markdown`
 
-**Required** Description of the input.
-
-### `optional-input`
-
-**Optional** Description of optional input; defaults to `<value>`.
+**Required** A string containing the Markdown to be converted.
 
 ## Outputs
 
-### `output`
+### `json`
 
-Description of output.
+A string containing the JSON syntax tree for the provided Markdown input.
 
 ## Example usage
 
 ```yaml
-- name: A meaningful step name
-  uses: bewuethr/<action-name>@v1
-  id: id
+- name: Convert Markdown to JSON
+  uses: bewuethr/md2json-action@v0
+  id: convert
   with:
-    required-input: something
+    markdown: |
+      # The title
+
+      This is example Markdown input.
 
 - name: Print output
   env:
-    value: ${{ steps.id.outputs.output }}
+    json: ${{ steps.convert.outputs.json }}
   run: |
-    echo "Output: $value"
+    jq . <<< "$json"
 ```
