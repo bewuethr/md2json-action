@@ -7,7 +7,7 @@ branding:
   icon: filter
 
 inputs:
-  markdown-string:
+  markdown:
     description: The Markdown to be converted
     required: true
 
@@ -27,7 +27,7 @@ runs:
     - name: Convert Markdown to JSON
       id: convert
       env:
-        markdown: ${{ inputs.markdown-string }}
+        markdown: ${{ inputs.markdown }}
       shell: bash
       run: |
         "$GITHUB_ACTION_PATH/md2json" "$markdown"
