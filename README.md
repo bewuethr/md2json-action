@@ -19,6 +19,10 @@ An action to convert Markdown to JSON
 
 **Required** A string containing the Markdown to be converted.
 
+### `token`
+
+**Required** A GitHub token to access the repository; usually `$GITHUB_TOKEN`.
+
 ## Outputs
 
 ### `json`
