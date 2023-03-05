@@ -20,6 +20,7 @@ runs:
   using: composite
   steps:
     - name: Install remark-cli
+      shell: bash
       run: |
         npm install remark-cli
 
