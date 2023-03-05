@@ -22,7 +22,7 @@ runs:
     - name: Install remark-cli
       shell: bash
       run: |
-        npm install remark-cli
+        npm install --global remark-cli@11.0.0
 
     - name: Convert Markdown to JSON
       id: convert
