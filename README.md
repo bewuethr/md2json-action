@@ -23,7 +23,8 @@ An action to convert Markdown to JSON
 
 ### `json`
 
-A string containing the JSON syntax tree for the provided Markdown input.
+An escaped one-line string containing the JSON syntax tree for the provided
+Markdown input; use `fromJSON` to convert back to JSON
 
 ## Example usage
 
@@ -39,7 +40,7 @@ A string containing the JSON syntax tree for the provided Markdown input.
 
 - name: Print output
   env:
-    json: ${{ steps.convert.outputs.json }}
+    json: ${{ fromJSON(steps.convert.outputs.json) }}
   run: |
     jq . <<< "$json"
 ```

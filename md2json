@@ -14,4 +14,4 @@ echo "::group::JSON output"
 printf '%s\n' "$json"
 echo "::endgroup::"
 
-echo "json=$json" >> "$GITHUB_OUTPUT"
+echo "json=$(jq --raw-input --slurp . <<< "$json")" >> "$GITHUB_OUTPUT"
