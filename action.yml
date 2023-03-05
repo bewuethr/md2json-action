@@ -10,9 +10,6 @@ inputs:
   markdown-string:
     description: The Markdown to be converted
     required: true
-  token:
-    description: Token to access the repository
-    required: true
 
 outputs:
   json:
@@ -31,7 +28,6 @@ runs:
       id: convert
       env:
         markdown: ${{ inputs.markdown-string }}
-        GITHUB_TOKEN: ${{ inputs.token }}
       shell: bash
       run: |
         "$GITHUB_ACTION_PATH/md2json" "$markdown"
