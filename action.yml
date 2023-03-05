@@ -1,37 +1,32 @@
-name: Name of action
+name: Convert Markdonw to JSON
 author: Benjamin Wuethrich
-description: Description of action
+description: Produces a JSON syntax tree for Markdown input
 
 branding:
-  color: white
-  icon: cpu
+  color: orange
+  icon: filter
 
 inputs:
-  required-input:
-    description: Description of required input
+  markdown-string:
+    description: The Markdown to be converted
     required: true
-  optional-input:
-    description: Description of optional input
-    required: false
-    default: <value>
 
 outputs:
-  output:
-    description: Description of output
-    value: ${{ steps.getbranchname.outputs.name }}
-  date:
-    description: The date portion of the branch name
-    value: ${{ steps.stepid.outputs.output }}
+  json:
+    description: A JSON syntax tree for the input Markdown
+    value: ${{ steps.convert.outputs.json }}
 
 runs:
   using: composite
   steps:
-    - name: Step name
-      id: stepid
+    - name: Install remark-cli
+      run: |
+        npm install remark-cli
+
+    - name: Convert Markdown to JSON
+      id: convert
       env:
-        required: ${{ inputs.required-input }}
-        optional: ${{ inputs.optional-input }}
+        markdown: ${{ inputs.markdown-string }}
       shell: bash
       run: |
-        echo "Running the script..." >&2
-        "$GITHUB_ACTION_PATH/script" "$required" "$optional"
+        "$GITHUB_ACTION_PATH/md2json" "$markdown"
