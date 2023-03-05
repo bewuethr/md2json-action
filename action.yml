@@ -1,4 +1,4 @@
-name: Convert Markdonw to JSON
+name: Convert Markdown to JSON
 author: Benjamin Wuethrich
 description: Produces a JSON syntax tree for Markdown input
 
