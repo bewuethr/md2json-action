@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
-required=$1
-optional=$2
+set -o errexit
 
-printf '%s: %s\n' 'required' "$required" 'optional' "$optional"
+markdown=$1
 
-echo 'output=value' >> "$GITHUB_OUTPUT"
+echo "::group::Markdown input"
+printf '%s\n' "$markdown"
+echo "::endgroup::"
+
+json=$(remark --tree-out --frail <<< "$markdown")
+
+echo "::group::JSON output"
+printf '%s\n' "$json"
+echo "::endgroup::"
+
+echo "json=$json" >> "$GITHUB_OUTPUT"
